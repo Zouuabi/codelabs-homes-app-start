@@ -7,7 +7,7 @@ import { last } from 'rxjs';
 })
 export class HousingService {
 
-  protected housingLocationList : HousingLocation[] = [{
+  protected housingLocationList: HousingLocation[] = [{
     id: 0,
     name: 'Acme Fresh Start Housing',
     city: 'Chicago',
@@ -108,18 +108,24 @@ export class HousingService {
     laundry: true
   }]
 
-  getAllHousingLocations() : HousingLocation [] {
+  getAllHousingLocations(): HousingLocation[] {
     return this.housingLocationList;
   }
 
-  getHousingLocationById( id : Number) : HousingLocation | undefined {
-    return this.housingLocationList.find (
-      location => location.id === id );
-    
-  }
+  getHousingLocationById(id: Number): HousingLocation | undefined {
+    return this.housingLocationList.find(
+      location => location.id === id);
 
-  submitApplication(firstName : string , lastName : string ,email: string){
-    console.log(firstName,lastName,email)
+  }
+  search(filter: string): HousingLocation[] {
+
+    let ret = this.housingLocationList.filter(HousingLocation => HousingLocation.city.toLocaleLowerCase().includes(filter.toLocaleLowerCase()));
+
+    return ret;
+
+  }
+  submitApplication(firstName: string, lastName: string, email: string) {
+    console.log(firstName, lastName, email)
   }
 
   constructor() { }

@@ -19,4 +19,12 @@ export class HomeComponent {
   constructor(){
     this.housingLocationList = this.housingService.getAllHousingLocations();
   }
+
+  onSearch (filter:string){
+    if (!filter){
+      this.housingLocationList = this.housingService.getAllHousingLocations();
+    }else{
+      this.housingLocationList = this.housingService.search(filter);
+    }
+  }
 }
